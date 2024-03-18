@@ -12,6 +12,9 @@ print('<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">')
 print('<channel><title>Roisín Dubh Listings</title><link>https://roisindubh.net/listings/</link>')
 
 for listing in listings:
+    if datetime.strptime(listing['event_date_time'], '%Y-%m-%dT%H:%M:%S') < datetime.now():
+        continue
+
     print('<item>')
     print('<title>' + listing['pagetitle'] + '</title>')
     print('<link>https://roisindubh.net/listings/' + listing['alias'] + '</link>')
