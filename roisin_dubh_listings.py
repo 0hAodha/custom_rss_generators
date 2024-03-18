@@ -1,5 +1,5 @@
 #!/bin/python3
-# Script to scrape the event listings webpage for the Róisín Dubh pub in Galway and generate an RSS feed
+# Script to consume the event listings JSON feed for the Róisín Dubh pub in Galway and generate an RSS feed
 # The page does appear to offer an RSS feed but it's broken and returns dates in the far future and distant past
 
 import requests
