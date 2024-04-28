@@ -22,7 +22,7 @@ for listing in listings:
     print('<description> <![CDATA[')
     print(listing['introtext'] + '\n' + listing['content'] + '\n')
 
-    print('Ticket Price: €' + str(listing['prices']['regular']))
+    print('Ticket Price: €' + str(listing['prices']['regular']) + '<br>')
     print('Location: ' + listing['name'] + '<br>')
     print('Ticket Allocation: ' + listing['ticket_allocation'] + '<br>')
     print('Tickets remaining?: ' + str(listing['ticket_remaining'] == '1') + '<br>')
