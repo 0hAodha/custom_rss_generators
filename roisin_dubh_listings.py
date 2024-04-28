@@ -22,6 +22,7 @@ for listing in listings:
     print('<description> <![CDATA[')
     print(listing['introtext'] + '\n' + listing['content'] + '\n')
 
+    print('Ticket Price: €' + str(listing['prices']['regular']))
     print('Location: ' + listing['name'] + '<br>')
     print('Ticket Allocation: ' + listing['ticket_allocation'] + '<br>')
     print('Tickets remaining?: ' + str(listing['ticket_remaining'] == '1') + '<br>')
@@ -34,16 +35,6 @@ for listing in listings:
 
     if listing['external_ticket_url']:
         print('External Ticket URL: <a href="' + listing['external_ticket_url'] + '">' + listing['external_ticket_url'] + '</a>')
-
- #  unparsed json object:
- #    "prices": {
- #      "regular": 10,
- #      "student": 0,
- #      "vip": 0,
- #      "ticket_limit": 10,
- #      "ticket_limit_per_transaction": 1,
- #      "discount": []
- #    },
 
     print(']]> </description>')
     print('<pubDate>' + datetime.strptime(listing['event_date_time'], '%Y-%m-%dT%H:%M:%S').strftime('%a, %d %b %Y %H:%M:%S %z') + '</pubDate>')
