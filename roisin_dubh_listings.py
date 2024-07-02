@@ -16,7 +16,7 @@ for listing in listings:
         continue
 
     print('<item>')
-    print('<title>' + listing['pagetitle'] + '</title>')
+    print('<title><![CDATA[' + listing['pagetitle'] + ']]></title>')
     print('<link>https://roisindubh.net/listings/' + listing['alias'] + '</link>')
 
     print('<description> <![CDATA[')
