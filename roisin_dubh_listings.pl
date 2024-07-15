@@ -37,19 +37,19 @@ foreach my $listing (@$listings) {
                     " . $listing->{introtext} . "
 
                     " . $listing->{content} . "
+
+                Location: " . $listing->{name} . "<br>
+                Event start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", $event_date) . "<br>
+                Late night?: " . yes_or_no($listing->{late_night}) . "<br>
+                Postponed?: " . yes_or_no($listing->{postponed}) . "<br>
+<br>
+                Ticket Price: €" . $listing->{prices}->{regular} . "<br>
+                Ticket Allocation: " . $listing->{ticket_allocation} . "<br>
+                Tickets remaining?: " . yes_or_no($listing->{ticket_remaining}) . "<br>
+<br>
+                Sales start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", str2time($listing->{sales_start})) . "<br>
+                On Sale?: " . yes_or_no($listing->{on_sale}) . "<br>
                 ]]>
-
-                Location: " . $listing->{name} . "
-                Event start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", $event_date) . "
-                Late night?: " . yes_or_no($listing->{late_night}) . "
-                Postponed?: " . yes_or_no($listing->{postponed}) . "
-
-                Ticket Price: €" . $listing->{prices}->{regular} . "
-                Ticket Allocation: " . $listing->{ticket_allocation} . "
-                Tickets remaining?: " . yes_or_no($listing->{ticket_remaining}) . "
-
-                Sales start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", str2time($listing->{sales_start})) . "
-                On Sale?: " . yes_or_no($listing->{on_sale}) . "
             </description>
         </item>
         ");
