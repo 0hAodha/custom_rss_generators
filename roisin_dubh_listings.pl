@@ -30,7 +30,7 @@ foreach my $listing (@$listings) {
         <item>
             <title><![CDATA[" . $listing->{pagetitle} . "]]></title>
             <link>https://roisindubh.net/listings/" . $listing->{alias} . "</link>
-            <pubDate>" . Date::strftime(Date::FORMAT_ISO8601, $event_date) . "</pubDate>
+            <pubDate>" . Date::strftime("%a, %d %b %Y %H:%M:%S %z", $event_date) . "</pubDate>
 
             <description>
                 <![CDATA[
@@ -40,7 +40,7 @@ foreach my $listing (@$listings) {
                 ]]>
 
                 Location: " . $listing->{name} . "
-                Event start time: " . $listing->{event_date_time} . "
+                Event start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", $event_date) . "
                 Late night?: " . yes_or_no($listing->{late_night}) . "
                 Postponed?: " . yes_or_no($listing->{postponed}) . "
 
@@ -48,7 +48,7 @@ foreach my $listing (@$listings) {
                 Ticket Allocation: " . $listing->{ticket_allocation} . "
                 Tickets remaining?: " . yes_or_no($listing->{ticket_remaining}) . "
 
-                Sales start time: " . $listing->{sales_start} . "
+                Sales start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", str2time($listing->{sales_start})) . "
                 On Sale?: " . yes_or_no($listing->{on_sale}) . "
             </description>
         </item>
