@@ -42,11 +42,11 @@ foreach my $listing (@$listings) {
                 Event start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", $event_date) . "<br>
                 Late night?: " . yes_or_no($listing->{late_night}) . "<br>
                 Postponed?: " . yes_or_no($listing->{postponed}) . "<br>
-<br>
+                <br>
                 Ticket Price: €" . $listing->{prices}->{regular} . "<br>
                 Ticket Allocation: " . $listing->{ticket_allocation} . "<br>
                 Tickets remaining?: " . yes_or_no($listing->{ticket_remaining}) . "<br>
-<br>
+                <br>
                 Sales start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", str2time($listing->{sales_start})) . "<br>
                 On Sale?: " . yes_or_no($listing->{on_sale}) . "<br>
                 ]]>
