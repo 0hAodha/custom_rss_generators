@@ -4,8 +4,8 @@ use warnings;
 
 use utf8;
 use JSON;
-use Date;
-use Date::Parse;
+use Time::Piece;
+use Time::Seconds;
 
 # use UTF-8 when writing to STDOUT
 binmode(STDOUT, ":encoding(utf8)");
@@ -22,15 +22,15 @@ print("
 <channel><title>Róisín Dubh Listings</title><link>https://roisindubh.net/listings/</link>");
 
 foreach my $listing (@$listings) {
-    my $event_date = str2time($listing->{event_date_time});
+    my $event_date = Time::Piece->strptime($listing->{event_date_time}, "%Y-%m-%dT%H:%M:%S");
 
     # only print data if event data is in the future
-    if ($event_date > Date::now()) {
+    if ($event_date > localtime) {
         print("
         <item>
             <title><![CDATA[" . $listing->{pagetitle} . "]]></title>
             <link>https://roisindubh.net/listings/" . $listing->{alias} . "</link>
-            <pubDate>" . Date::strftime("%a, %d %b %Y %H:%M:%S %z", $event_date) . "</pubDate>
+            <pubDate>" . $event_date->strftime("%a, %d %b %Y %H:%M:%S %z") . "</pubDate>
 
             <description>
                 <![CDATA[
@@ -39,7 +39,7 @@ foreach my $listing (@$listings) {
                     " . $listing->{content} . "
 
                 Location: " . $listing->{name} . "<br>
-                Event start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", $event_date) . "<br>
+                Event start time: " . $event_date->strftime("%Y-%m-%d %a %H:%M:%S") . "<br>
                 Late night?: " . yes_or_no($listing->{late_night}) . "<br>
                 Postponed?: " . yes_or_no($listing->{postponed}) . "<br>
                 <br>
@@ -47,7 +47,7 @@ foreach my $listing (@$listings) {
                 Ticket Allocation: " . $listing->{ticket_allocation} . "<br>
                 Tickets remaining?: " . yes_or_no($listing->{ticket_remaining}) . "<br>
                 <br>
-                Sales start time: " . Date::strftime("%Y-%m-%d %a %H:%M:%S", str2time($listing->{sales_start})) . "<br>
+                Sales start time: " . Time::Piece->strptime($listing->{sales_start}, "%Y-%m-%dT%H:%M:%S")->strftime("%Y-%m-%d %a %H:%M:%S") . "<br>
                 On Sale?: " . yes_or_no($listing->{on_sale}) . "<br>
                 ]]>
             </description>
