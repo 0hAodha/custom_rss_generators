@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 # Script to scrape the Irish dictionary website focloir.ie and turn the "Word of the Day" into an RSS item
 use strict;
 use warnings;
